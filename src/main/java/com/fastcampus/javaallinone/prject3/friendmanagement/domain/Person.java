@@ -1,10 +1,15 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Getter
+@Setter
 public class Person {
 
     @Id
@@ -14,4 +19,13 @@ public class Person {
     private String name;
 
     private int age;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
