@@ -34,7 +34,8 @@ class HelloWorldControllerTest {
         // perform 을 통해 실제 http 동작을 실행
         mockMvc.perform(MockMvcRequestBuilders.get("/api/helloWorld"))
                 // 구체적인 test perform 의 결과를 도출 하기 위한 작업)
-        .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("HelloWorld"));
     }
 }
