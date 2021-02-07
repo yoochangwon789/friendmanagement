@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,8 +32,9 @@ class HelloWorldControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController).build();
 
         // perform 을 통해 실제 http 동작을 실행
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/helloWorld")
-        ).andDo(MockMvcResultHandlers.print());// 구체적인 test perform 의 결과를 도출 하기 위한 작업
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/helloWorld"))
+                // 구체적인 test perform 의 결과를 도출 하기 위한 작업)
+        .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
