@@ -31,7 +31,8 @@ class PersonServiceTest {
 
         List<Person> result = personService.getPeopleExcludeBlocks();
 
-        System.out.println(result);
+//        System.out.println(result);
+        result.forEach(System.out::println);
     }
 
     private void givenPeople() {
