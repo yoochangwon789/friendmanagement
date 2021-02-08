@@ -33,4 +33,5 @@ public class Person {
 
     private String job;
 
+    private String phoneNumber;
 }
