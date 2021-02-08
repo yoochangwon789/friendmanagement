@@ -41,7 +41,7 @@ class PersonRepositoryTest {
     @Test
     void hashCodeAndEquals() {
         Person person1 = new Person("martin", 10, "A");
-        Person person2 = new Person("martin", 10, "B");
+        Person person2 = new Person("martin", 10, "A");
 
         System.out.println(person1.equals(person2));
         System.out.println(person1.hashCode());
