@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Data
 public class Person {
 
@@ -37,4 +38,5 @@ public class Person {
     @ToString.Exclude
     private String phoneNumber;
 
+    private boolean block;
 }
