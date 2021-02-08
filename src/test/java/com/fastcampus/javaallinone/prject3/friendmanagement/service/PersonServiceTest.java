@@ -38,7 +38,7 @@ class PersonServiceTest {
     private void givenPeople() {
         givenPerson("martin", 10, "A");
         givenPerson("david", 9, "B");
-        givenPerson("dennis", 7, "O");
+        givenBlockPerson("dennis", 7, "O");
         givenBlockPerson("martin", 11, "AB");
     }
 
