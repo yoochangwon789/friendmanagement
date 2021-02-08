@@ -39,7 +39,7 @@ class PersonServiceTest {
         givenPerson("martin", 10, "A");
         givenPerson("david", 9, "B");
         givenPerson("dennis", 7, "O");
-        givenPerson("martin", 11, "AB");
+        givenBlockPerson("martin", 11, "AB");
     }
 
     private void givenBlocks() {
@@ -48,6 +48,13 @@ class PersonServiceTest {
 
     private void givenBlock(String name) {
         blockRepository.save(new Block(name));
+    }
+
+    private void givenBlockPerson(String name, int age, String bloodType) {
+        Person blockPerson = new Person(name, age, bloodType);
+        blockPerson.setBlock(new Block(name));
+
+        personRepository.save(blockPerson);
     }
 
     private void givenPerson(String name, int age, String bloodType) {
