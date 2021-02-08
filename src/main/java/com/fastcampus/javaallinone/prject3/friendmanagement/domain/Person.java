@@ -2,6 +2,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@ToString
 public class Person {
 
     @Id
@@ -31,17 +33,4 @@ public class Person {
 
     private String job;
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", hobby='" + hobby + '\'' +
-                ", bloodType='" + bloodType + '\'' +
-                ", address='" + address + '\'' +
-                ", birthday=" + birthday +
-                ", job='" + job + '\'' +
-                '}';
-    }
 }
