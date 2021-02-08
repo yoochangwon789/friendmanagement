@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class Person {
 
     private String address;
 
-    private LocalDateTime birthday;
+    private LocalDate birthday;
 
     private String job;
 
@@ -39,4 +39,10 @@ public class Person {
     private String phoneNumber;
 
     private boolean block;
+
+    private String blockReason;
+
+    private LocalDate blockStartDate;
+
+    private LocalDate blockEndDate;
 }
