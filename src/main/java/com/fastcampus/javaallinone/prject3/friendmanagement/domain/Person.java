@@ -37,6 +37,11 @@ public class Person {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", hobby='" + hobby + '\'' +
+                ", bloodType='" + bloodType + '\'' +
+                ", address='" + address + '\'' +
+                ", birthday=" + birthday +
+                ", job='" + job + '\'' +
                 '}';
     }
 }
