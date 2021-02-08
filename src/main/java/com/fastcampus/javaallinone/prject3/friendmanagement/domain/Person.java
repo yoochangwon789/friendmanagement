@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@RequiredArgsConstructor    // GeneratedValue 의 값을 생성자의 넣을 필요 없으므로 그 때 사용하는 어노탠션
 public class Person {
 
     @Id

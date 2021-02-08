@@ -37,9 +37,10 @@ class PersonRepositoryTest {
     }
 
     @Test
-    void constructorTest() {
-        Person person = new Person("martin", 10);
+    void hashCodeAndEquals() {
+        Person person1 = new Person("martin", 10);
+        Person person2 = new Person("martin", 10);
 
-
+        System.out.println(person1.equals(person2));
     }
 }
