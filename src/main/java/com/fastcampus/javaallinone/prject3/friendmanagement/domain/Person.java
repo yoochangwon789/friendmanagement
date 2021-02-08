@@ -56,4 +56,8 @@ public class Person {
 
         return true;
     }
+
+    public int hashCode() {
+        return (name + age).hashCode();
+    }
 }
