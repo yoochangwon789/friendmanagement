@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor    // GeneratedValue 의 값을 생성자의 넣을 필요 없으므로 그 때 사용하는 어노탠션
+@EqualsAndHashCode
 public class Person {
 
     @Id
@@ -40,25 +41,4 @@ public class Person {
     @ToString.Exclude
     private String phoneNumber;
 
-    public boolean equals(Object object) {
-        if (object == null) {
-            return false;
-        }
-
-        Person person = (Person) object;
-
-        if (!person.getName().equals(this.getName())){
-            return false;
-        }
-
-        if (person.getAge() != this.getAge()) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public int hashCode() {
-        return (name + age).hashCode();
-    }
 }
