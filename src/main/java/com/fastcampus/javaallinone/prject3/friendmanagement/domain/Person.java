@@ -1,8 +1,6 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,15 +10,20 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@ToString(exclude = "phoneNumber")
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Person {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private int age;
 
     private String hobby;
@@ -33,5 +36,6 @@ public class Person {
 
     private String job;
 
+    @ToString.Exclude
     private String phoneNumber;
 }

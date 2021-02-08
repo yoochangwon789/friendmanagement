@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,5 +34,12 @@ class PersonRepositoryTest {
         assertThat(people.get(0).getName()).isEqualTo("martin");
         assertThat(people.get(0).getAge()).isEqualTo(10);
         assertThat(people.get(0).getBloodType()).isEqualTo("A");
+    }
+
+    @Test
+    void constructorTest() {
+        Person person = new Person("martin", 10);
+
+
     }
 }
