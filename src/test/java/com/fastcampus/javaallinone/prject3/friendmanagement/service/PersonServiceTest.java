@@ -52,7 +52,7 @@ class PersonServiceTest {
 
     private void givenBlockPerson(String name, int age, String bloodType) {
         Person blockPerson = new Person(name, age, bloodType);
-        blockPerson.setBlock(new Block(name));
+        blockPerson.setBlock(givenBlock(name));
 
         personRepository.save(blockPerson);
     }
