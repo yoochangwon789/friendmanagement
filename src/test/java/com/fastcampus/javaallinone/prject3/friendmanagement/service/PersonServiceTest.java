@@ -33,6 +33,15 @@ class PersonServiceTest {
         result.forEach(System.out::println);
     }
 
+    @Test
+    void cascadeTest() {
+        givenPeople();
+
+        List<Person> result = personRepository.findAll();
+
+        result.forEach(System.out::println);
+    }
+
     private void givenPeople() {
         givenPerson("martin", 10, "A");
         givenPerson("david", 9, "B");
