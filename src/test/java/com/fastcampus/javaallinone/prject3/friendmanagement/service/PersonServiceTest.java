@@ -27,11 +27,9 @@ class PersonServiceTest {
     @Test
     void getPeopleExcludeBlocks() {
         givenPeople();
-        givenBlocks();
 
         List<Person> result = personService.getPeopleExcludeBlocks();
 
-//        System.out.println(result);
         result.forEach(System.out::println);
     }
 
@@ -40,10 +38,6 @@ class PersonServiceTest {
         givenPerson("david", 9, "B");
         givenBlockPerson("dennis", 7, "O");
         givenBlockPerson("martin", 11, "AB");
-    }
-
-    private void givenBlocks() {
-        givenBlock("martin");
     }
 
     private void givenPerson(String name, int age, String bloodType) {
@@ -55,9 +49,5 @@ class PersonServiceTest {
         blockPerson.setBlock(new Block(name));
 
         personRepository.save(blockPerson);
-    }
-
-    private Block givenBlock(String name) {
-        return blockRepository.save(new Block(name));
     }
 }
