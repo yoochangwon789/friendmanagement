@@ -37,6 +37,6 @@ public class Person {
     private String phoneNumber;
 
     // cascade 를 추가하여 Person 엔티티에서 Block 객체를 함께 관리하겠 다는 의미
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Block block;
 }
