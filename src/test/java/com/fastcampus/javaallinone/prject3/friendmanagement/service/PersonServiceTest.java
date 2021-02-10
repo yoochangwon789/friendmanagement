@@ -58,6 +58,15 @@ class PersonServiceTest {
         blockRepository.findAll().forEach(System.out::println);
     }
 
+    @Test
+    void getPerson() {
+        givenPeople();
+
+        Person person = personService.getPerson(3L);
+
+        System.out.println(person);
+    }
+
     private void givenPeople() {
         givenPerson("martin", 10, "A");
         givenPerson("david", 9, "B");
