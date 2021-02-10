@@ -47,6 +47,10 @@ class PersonServiceTest {
 
         personRepository.save(person);
         personRepository.findAll().forEach(System.out::println);
+
+        personRepository.delete(person);
+        personRepository.findAll().forEach(System.out::println);
+        blockRepository.findAll().forEach(System.out::println);
     }
 
     private void givenPeople() {
