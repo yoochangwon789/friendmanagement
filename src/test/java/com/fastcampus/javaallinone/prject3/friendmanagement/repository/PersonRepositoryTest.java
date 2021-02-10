@@ -58,10 +58,12 @@ class PersonRepositoryTest {
         givenPerson("david", 9, "B");
         givenPerson("dennis", 8, "O");
         givenPerson("sophia", 7, "AB");
+        givenPerson("benny", 6, "A");
+        givenPerson("john", 5, "A");
 
-        Person result = personRepository.findByBloodType("A");
+        List<Person> result = personRepository.findByBloodType("A");
 
-        System.out.println(result);
+        result.forEach(System.out::println);
     }
 
     private void givenPerson(String name, int age, String bloodType) {
