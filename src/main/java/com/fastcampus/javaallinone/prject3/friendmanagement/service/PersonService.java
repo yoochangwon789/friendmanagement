@@ -18,9 +18,6 @@ public class PersonService {
     private PersonRepository personRepository;
 
     public List<Person> getPeopleExcludeBlocks() {
-//        List<Person> people = personRepository.findAll();
-
-//        return people.stream().filter(person -> person.getBlock() == null).collect(Collectors.toList());
         return personRepository.findByBlockIsNull();
     }
 
