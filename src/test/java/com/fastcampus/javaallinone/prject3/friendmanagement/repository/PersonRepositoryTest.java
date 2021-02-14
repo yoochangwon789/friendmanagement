@@ -76,8 +76,7 @@ class PersonRepositoryTest {
         givenPerson("sophia", 7, "AB", LocalDate.of(1994, 6, 30));
         givenPerson("benny", 6, "A", LocalDate.of(1995, 8, 30));
 
-        List<Person> result = personRepository.findByBirthdayBetween(LocalDate.of(1991, 8, 1),
-                LocalDate.of(1991, 8, 31));
+        List<Person> result = personRepository.findByMonthOfBirthday(8);
 
         result.forEach(System.out::println);
     }
