@@ -1,6 +1,7 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.repository;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
+import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -87,7 +88,7 @@ class PersonRepositoryTest {
 
     private void givenPerson(String name, int age, String bloodType, LocalDate birthday) {
         Person person = new Person(name, age, bloodType);
-        person.setBirthday(birthday);
+        person.setBirthday(new Birthday(birthday.getYear(), birthday.getMonthValue(), birthday.getDayOfMonth()));
 
         personRepository.save(person);
     }
