@@ -5,11 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
+import java.time.LocalDate;
 
 @Embeddable
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class Birthday {
 
     private int yearOfBirthday;
@@ -17,4 +17,10 @@ public class Birthday {
     private int monthOfBirthday;
 
     private int dayOfBirthday;
+
+    public Birthday(LocalDate birthday) {
+        this.yearOfBirthday = birthday.getYear();
+        this.monthOfBirthday = birthday.getMonthValue();
+        this.dayOfBirthday = birthday.getDayOfMonth();
+    }
 }
