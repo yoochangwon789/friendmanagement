@@ -16,5 +16,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     List<Person> findByBloodType(String bloodType);
 
-    List<Person> findByBirthdayBetween(LocalDate startDate, LocalDate endDate);
+    List<Person> findByMonthOfBirthday(int monthOfBirthday);
 }
