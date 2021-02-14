@@ -76,7 +76,7 @@ class PersonRepositoryTest {
         givenPerson("sophia", 7, "AB", LocalDate.of(1994, 6, 30));
         givenPerson("benny", 6, "A", LocalDate.of(1995, 8, 30));
 
-        List<Person> result = personRepository.findByMonthOfBirthday(8);
+        List<Person> result = personRepository.findByMonthOfBirthday(8, 30);
 
         result.forEach(System.out::println);
     }
