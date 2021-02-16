@@ -2,7 +2,6 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.service;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
-import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -62,5 +59,10 @@ public class PersonService {
         person.setName(name);
 
         personRepository.save(person);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+
     }
 }
