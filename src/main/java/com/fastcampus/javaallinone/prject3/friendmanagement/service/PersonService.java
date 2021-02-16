@@ -54,4 +54,9 @@ public class PersonService {
 
         personRepository.save(person);
     }
+
+    @Transactional
+    public void modify(Long id, String name) {
+
+    }
 }
