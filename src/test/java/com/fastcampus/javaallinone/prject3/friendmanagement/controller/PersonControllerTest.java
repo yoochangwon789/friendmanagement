@@ -1,5 +1,7 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
+import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Slf4j
 @SpringBootTest
 class PersonControllerTest {
 
     @Autowired
     private PersonController personController;
+
+    @Autowired
+    private PersonRepository personRepository;
 
     private MockMvc mockMvc;
 
@@ -79,5 +85,7 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.delete("/api/person/1"))
                 .andDo(print())
                 .andExpect(status().isOk());
+
+        System.out.println(personRepository.findPeopleDeleted());
     }
 }
