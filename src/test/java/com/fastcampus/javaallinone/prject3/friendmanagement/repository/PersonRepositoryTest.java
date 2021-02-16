@@ -22,7 +22,7 @@ class PersonRepositoryTest {
     @Test
     void crud() {
         Person person = new Person();
-        person.setName("martin");
+        person.setName("john");
         person.setAge(10);
         person.setBloodType("A");
 
@@ -32,10 +32,10 @@ class PersonRepositoryTest {
 
         List<Person> people = personRepository.findAll();
 
-        assertThat(people.size()).isEqualTo(1);
-        assertThat(people.get(0).getName()).isEqualTo("martin");
-        assertThat(people.get(0).getAge()).isEqualTo(10);
-        assertThat(people.get(0).getBloodType()).isEqualTo("A");
+        assertThat(people.size()).isEqualTo(2);
+        assertThat(people.get(1).getName()).isEqualTo("john");
+        assertThat(people.get(1).getAge()).isEqualTo(10);
+        assertThat(people.get(1).getBloodType()).isEqualTo("A");
     }
 
     @Test
