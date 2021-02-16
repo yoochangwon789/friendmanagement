@@ -54,15 +54,4 @@ class PersonRepositoryTest {
         assertThat(result.get(0).getName()).isEqualTo("martin");
         assertThat(result.get(1).getName()).isEqualTo("sophia");
     }
-
-    private void givenPerson(String name, int age, String bloodType) {
-        givenPerson(name, age, bloodType, null);
-    }
-
-    private void givenPerson(String name, int age, String bloodType, LocalDate birthday) {
-        Person person = new Person(name, age, bloodType);
-        person.setBirthday(new Birthday(birthday));
-
-        personRepository.save(person);
-    }
 }
