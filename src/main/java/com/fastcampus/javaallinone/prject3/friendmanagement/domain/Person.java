@@ -1,5 +1,6 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.domain;
 
+import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import lombok.*;
 
@@ -48,4 +49,10 @@ public class Person {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Block block;
+
+    public void set(PersonDto personDto) {
+        if (personDto.getAge() != 0) {
+            this.setAge(personDto.getAge());
+        }
+    }
 }
