@@ -24,7 +24,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public void postPerson(Person person) {
+    public void postPerson(@RequestBody Person person) {
         personService.put(person);
 
         log.info("person -> {}", personRepository.findAll());
