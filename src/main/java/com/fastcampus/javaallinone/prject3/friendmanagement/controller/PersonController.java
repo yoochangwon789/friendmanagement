@@ -1,5 +1,6 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
+import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import com.fastcampus.javaallinone.prject3.friendmanagement.service.PersonService;
@@ -33,8 +34,8 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public void modifyPerson(@PathVariable Long id, @RequestBody Person person) {
-        personService.modify(id, person);
+    public void modifyPerson(@PathVariable Long id, @RequestBody PersonDto personDto) {
+        personService.modify(id, personDto);
 
         log.info("person -> {}", personRepository.findAll());
     }

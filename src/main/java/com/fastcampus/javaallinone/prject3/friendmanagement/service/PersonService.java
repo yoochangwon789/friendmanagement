@@ -1,6 +1,8 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.service;
 
+import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
+import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +43,17 @@ public class PersonService {
     }
 
     @Transactional
-    public void modify(Long id, Person person) {
+    public void modify(Long id, PersonDto personDto) {
         Person personAtDb = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이다가 존재하지 않습니다"));
 
-        personAtDb.setName(person.getName());
-        personAtDb.setPhoneNumber(person.getPhoneNumber());
-        personAtDb.setJob(person.getJob());
-        personAtDb.setBirthday(person.getBirthday());
-        personAtDb.setAge(person.getAge());
-        personAtDb.setAddress(person.getAddress());
-        personAtDb.setBloodType(person.getBloodType());
-        personAtDb.setHobby(person.getHobby());
+        personAtDb.setName(personDto.getName());
+        personAtDb.setPhoneNumber(personDto.getPhoneNumber());
+        personAtDb.setJob(personDto.getJob());
+        personAtDb.setBirthday(new Birthday(personDto.getBirthday()));
+        personAtDb.setAge(personDto.getAge());
+        personAtDb.setAddress(personDto.getAddress());
+        personAtDb.setBloodType(personDto.getBloodType());
+        personAtDb.setHobby(personDto.getHobby());
 
         personRepository.save(personAtDb);
     }
