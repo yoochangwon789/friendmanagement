@@ -37,11 +37,10 @@ class PersonServiceTest {
 
     @Test
     void getPeopleByName() {
-        givenPeople();
-
         List<Person> result = personService.getPeopleByName("martin");
 
-        result.forEach(System.out::println);
+        assertThat(result.size()).isEqualTo(1);
+        assertThat(result.get(0).getName()).isEqualTo("martin");
     }
 
     @Test
