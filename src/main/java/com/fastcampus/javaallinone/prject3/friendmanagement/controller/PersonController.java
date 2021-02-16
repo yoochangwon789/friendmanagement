@@ -17,7 +17,8 @@ public class PersonController {
         return personService.getPerson(id);
     }
 
+    @PostMapping
     public void postPerson(Person person) {
-
+        personService.put(person);
     }
 }
