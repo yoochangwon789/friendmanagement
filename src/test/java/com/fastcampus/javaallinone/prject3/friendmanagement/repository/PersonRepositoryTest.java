@@ -1,17 +1,12 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.repository;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
-import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
