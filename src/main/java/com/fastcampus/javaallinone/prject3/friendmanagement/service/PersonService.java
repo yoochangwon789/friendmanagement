@@ -39,4 +39,9 @@ public class PersonService {
     public void put(Person person) {
         personRepository.save(person);
     }
+
+    @Transactional
+    public void modify(Long id, Person person) {
+        Person personAtDb = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이다가 존재하지 않습니다"));
+    }
 }
