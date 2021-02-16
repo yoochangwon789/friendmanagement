@@ -43,6 +43,8 @@ public class PersonController {
     // Patch 일부 리소스만 업데이트 한다는 의미
     @PatchMapping("/{id}")
     public void modifyPerson(@PathVariable Long id, String name) {
+        personService.modify(id, name);
 
+        log.info("person -> {}", personRepository.findAll());
     }
 }
