@@ -4,6 +4,7 @@ import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.Perso
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Where;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
+@Where(clause = "deleted = false")
 public class Person {
 
     @Id
