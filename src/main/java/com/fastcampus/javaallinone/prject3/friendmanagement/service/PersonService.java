@@ -63,6 +63,6 @@ public class PersonService {
 
     @Transactional
     public void delete(Long id) {
-
+        personRepository.deleteById(id);
     }
 }
