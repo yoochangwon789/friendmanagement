@@ -5,6 +5,7 @@ import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRep
 import com.fastcampus.javaallinone.prject3.friendmanagement.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/api/person")
@@ -24,6 +25,7 @@ public class PersonController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void postPerson(@RequestBody Person person) {
         personService.put(person);
 

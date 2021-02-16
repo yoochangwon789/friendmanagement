@@ -45,6 +45,6 @@ class PersonControllerTest {
                                 "  \"bloodType\": \"A\"\n" +
                                 "}"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 }
