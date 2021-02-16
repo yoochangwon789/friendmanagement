@@ -46,10 +46,18 @@ public class PersonService {
     public void modify(Long id, PersonDto personDto) {
         Person personAtDb = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이다가 존재하지 않습니다"));
 
+        if (!personAtDb.getName().equals(personDto.getName())) {
+            throw new RuntimeException("이름이 다릅니다.");
+        }
+
         personAtDb.setName(personDto.getName());
         personAtDb.setPhoneNumber(personDto.getPhoneNumber());
         personAtDb.setJob(personDto.getJob());
-        personAtDb.setBirthday(new Birthday(personDto.getBirthday()));
+
+        if (personDto.getBirthday() != null) {
+            personAtDb.setBirthday(new Birthday(personDto.getBirthday()));
+        }
+
         personAtDb.setAge(personDto.getAge());
         personAtDb.setAddress(personDto.getAddress());
         personAtDb.setBloodType(personDto.getBloodType());
