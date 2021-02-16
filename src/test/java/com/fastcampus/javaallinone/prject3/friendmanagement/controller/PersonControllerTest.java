@@ -70,7 +70,7 @@ class PersonControllerTest {
 
         mockMvc.perform(
                 MockMvcRequestBuilders.patch("/api/person/1")
-                .param("name", "martin22"))
+                .param("name", "martin22`"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
