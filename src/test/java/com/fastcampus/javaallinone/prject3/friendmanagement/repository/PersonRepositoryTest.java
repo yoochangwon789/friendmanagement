@@ -70,13 +70,13 @@ class PersonRepositoryTest {
 
     @Test
     void findByBirthdayBetween() {
-        givenPerson("martin", 10, "A", LocalDate.of(1991, 2, 30));
+        givenPerson("martin", 10, "A", LocalDate.of(1991, 8, 15));
         givenPerson("david", 9, "B", LocalDate.of(1992, 7, 10));
         givenPerson("dennis", 8, "O", LocalDate.of(1993, 1, 5));
         givenPerson("sophia", 7, "AB", LocalDate.of(1994, 6, 30));
         givenPerson("benny", 6, "A", LocalDate.of(1995, 8, 30));
 
-        List<Person> result = personRepository.findByMonthOfBirthday(2);
+        List<Person> result = personRepository.findByMonthOfBirthday(8);
 
         result.forEach(System.out::println);
     }
