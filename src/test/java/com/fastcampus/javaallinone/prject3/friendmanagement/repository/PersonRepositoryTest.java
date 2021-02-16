@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -28,26 +29,21 @@ class PersonRepositoryTest {
 
         personRepository.save(person);
 
-        List<Person> people = personRepository.findByName("john");
+        List<Person> result = personRepository.findByName("john");
 
-        assertThat(people.size()).isEqualTo(1);
-        assertThat(people.get(0).getName()).isEqualTo("john");
-        assertThat(people.get(0).getAge()).isEqualTo(10);
-        assertThat(people.get(0).getBloodType()).isEqualTo("A");
+        assertThat(result.size()).isEqualTo(1);
+        assertThat(result.get(0).getName()).isEqualTo("john");
+        assertThat(result.get(0).getAge()).isEqualTo(10);
+        assertThat(result.get(0).getBloodType()).isEqualTo("A");
     }
 
     @Test
     void findByBloodType() {
-        givenPerson("martin", 10, "A");
-        givenPerson("david", 9, "B");
-        givenPerson("dennis", 8, "O");
-        givenPerson("sophia", 7, "AB");
-        givenPerson("benny", 6, "A");
-        givenPerson("john", 5, "A");
-
         List<Person> result = personRepository.findByBloodType("A");
 
-        result.forEach(System.out::println);
+        assertThat(result.size()).isEqualTo(2);
+        assertThat(result.get(0).getName()).isEqualTo("martin");
+        assertThat(result.get(1).getName()).isEqualTo("benny");
     }
 
     @Test
