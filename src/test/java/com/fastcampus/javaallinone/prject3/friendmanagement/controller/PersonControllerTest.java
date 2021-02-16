@@ -63,4 +63,15 @@ class PersonControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void modifyName() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.patch("/api/person/1")
+                .param("name", "martin22"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }
