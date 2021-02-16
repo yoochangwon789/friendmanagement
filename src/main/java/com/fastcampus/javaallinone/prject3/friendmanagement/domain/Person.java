@@ -4,7 +4,8 @@ import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @NoArgsConstructor
@@ -18,14 +19,19 @@ public class Person {
     private Long id;
 
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String name;
 
     @NonNull
+    @Min(1)
     private int age;
 
     private String hobby;
 
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String bloodType;
 
     private String address;
