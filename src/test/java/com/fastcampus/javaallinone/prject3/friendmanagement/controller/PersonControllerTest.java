@@ -53,7 +53,7 @@ class PersonControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
 
         mockMvc.perform(
-                MockMvcRequestBuilders.put("/api/person/1")
+                MockMvcRequestBuilders.put("/api/person/2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "  \"name\": \"martin2\",\n" +
