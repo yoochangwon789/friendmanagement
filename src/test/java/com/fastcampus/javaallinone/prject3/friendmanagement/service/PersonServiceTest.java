@@ -23,9 +23,6 @@ class PersonServiceTest {
     @Autowired
     private PersonRepository personRepository;
 
-    @Autowired
-    private BlockRepository blockRepository;
-
     @Test
     void getPeopleExcludeBlocks() {
         List<Person> result = personService.getPeopleExcludeBlocks();
@@ -51,23 +48,5 @@ class PersonServiceTest {
         Person person = personService.getPerson(3L);
 
         assertThat(person.getName()).isEqualTo("dennis");
-    }
-
-    private void givenPeople() {
-        givenPerson("martin", 10, "A");
-        givenPerson("david", 9, "B");
-        givenBlockPerson("dennis", 7, "O");
-        givenBlockPerson("martin", 11, "AB");
-    }
-
-    private void givenPerson(String name, int age, String bloodType) {
-        personRepository.save(new Person(name, age, bloodType));
-    }
-
-    private void givenBlockPerson(String name, int age, String bloodType) {
-        Person blockPerson = new Person(name, age, bloodType);
-        blockPerson.setBlock(new Block(name));
-
-        personRepository.save(blockPerson);
     }
 }
