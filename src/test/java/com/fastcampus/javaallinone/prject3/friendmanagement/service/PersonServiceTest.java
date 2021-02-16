@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -45,11 +46,9 @@ class PersonServiceTest {
 
     @Test
     void getPerson() {
-        givenPeople();
-
         Person person = personService.getPerson(3L);
 
-        System.out.println(person);
+        assertThat(person.getName()).isEqualTo("dennis");
     }
 
     private void givenPeople() {
