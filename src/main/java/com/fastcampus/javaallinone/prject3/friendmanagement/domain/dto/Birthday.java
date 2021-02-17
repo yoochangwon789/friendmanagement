@@ -28,6 +28,10 @@ public class Birthday {
         return LocalDate.now().getYear() - this.yearOfBirthday + 1;
     }
 
+    public boolean isBirthdayToday() {
+        return LocalDate.now().equals(LocalDate.of(yearOfBirthday, monthOfBirthday, dayOfBirthday));
+    }
+
     public static Birthday of(LocalDate birthday) {
         return new Birthday(birthday);
     }
