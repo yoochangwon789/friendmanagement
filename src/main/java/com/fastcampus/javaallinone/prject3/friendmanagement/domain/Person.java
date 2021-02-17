@@ -31,11 +31,6 @@ public class Person {
 
     private String hobby;
 
-    @NonNull
-    @NotEmpty
-    @Column(nullable = false)
-    private String bloodType;
-
     private String address;
 
     @Embedded
@@ -57,10 +52,6 @@ public class Person {
     public void set(PersonDto personDto) {
         if (!StringUtils.isEmpty(personDto.getHobby())) {
             this.setHobby(personDto.getHobby());
-        }
-
-        if (!StringUtils.isEmpty(personDto.getBloodType())) {
-            this.setBloodType(personDto.getBloodType());
         }
 
         if (!StringUtils.isEmpty(personDto.getAddress())) {
