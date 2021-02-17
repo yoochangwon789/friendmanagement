@@ -54,6 +54,7 @@ public class PersonController {
 
         log.info("person -> {}", personRepository.findAll());
 
+        // 람다식 구현
         return personRepository.findPeopleDeleted().stream().anyMatch(person -> person.getId().equals(id));
     }
 }
