@@ -76,8 +76,12 @@ public class Person {
         }
     }
 
-    public int getAge() {
-        return LocalDate.now().getYear() - this.birthday.getYearOfBirthday() + 1;
+    public Integer getAge() {
+        if (this.birthday != null) {
+            return LocalDate.now().getYear() - this.birthday.getYearOfBirthday() + 1;
+        } else {
+            return null;
+        }
     }
 
     public boolean isBirthdayToday() {
