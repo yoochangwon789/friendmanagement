@@ -20,18 +20,6 @@ class PersonServiceTest {
     private PersonRepository personRepository;
 
     @Test
-    void getPeopleExcludeBlocks() {
-        List<Person> result = personService.getPeopleExcludeBlocks();
-
-        result.forEach(System.out::println);
-
-        assertThat(result.size()).isEqualTo(3);
-        assertThat(result.get(0).getName()).isEqualTo("martin");
-        assertThat(result.get(1).getName()).isEqualTo("david");
-        assertThat(result.get(2).getName()).isEqualTo("benny");
-    }
-
-    @Test
     void getPeopleByName() {
         List<Person> result = personService.getPeopleByName("martin");
 
