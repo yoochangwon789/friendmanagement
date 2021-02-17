@@ -31,15 +31,6 @@ class PersonRepositoryTest {
     }
 
     @Test
-    void findByBloodType() {
-        List<Person> result = personRepository.findByBloodType("A");
-
-        assertThat(result.size()).isEqualTo(2);
-        assertThat(result.get(0).getName()).isEqualTo("martin");
-        assertThat(result.get(1).getName()).isEqualTo("benny");
-    }
-
-    @Test
     void findByBirthdayBetween() {
         List<Person> result = personRepository.findByMonthOfBirthday(8);
 
