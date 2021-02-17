@@ -18,9 +18,13 @@ public class Birthday {
 
     private Integer dayOfBirthday;
 
-    public Birthday(LocalDate birthday) {
+    private Birthday(LocalDate birthday) {
         this.yearOfBirthday = birthday.getYear();
         this.monthOfBirthday = birthday.getMonthValue();
         this.dayOfBirthday = birthday.getDayOfMonth();
+    }
+
+    public static Birthday of(LocalDate birthday) {
+        return new Birthday(birthday);
     }
 }
