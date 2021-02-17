@@ -24,6 +24,10 @@ public class Birthday {
         this.dayOfBirthday = birthday.getDayOfMonth();
     }
 
+    public int getAge() {
+        return LocalDate.now().getYear() - this.yearOfBirthday + 1;
+    }
+
     public static Birthday of(LocalDate birthday) {
         return new Birthday(birthday);
     }
