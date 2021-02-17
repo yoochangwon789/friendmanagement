@@ -16,8 +16,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     List<Person> findByBlockIsNull();
 
-    List<Person> findByBloodType(String bloodType);
-
     // ? 인자를 사용하면 파라미터의 순서대로 쿼리를 넣어주게 된다
     @Query(value = "select person from Person person where person.birthday.monthOfBirthday = :monthOfBirthday")
     List<Person> findByMonthOfBirthday(@Param("monthOfBirthday") int monthOfBirthday);
