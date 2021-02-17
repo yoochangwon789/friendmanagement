@@ -1,18 +1,14 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.service;
 
-import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Block;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
-import com.fastcampus.javaallinone.prject3.friendmanagement.repository.BlockRepository;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PersonServiceTest {
