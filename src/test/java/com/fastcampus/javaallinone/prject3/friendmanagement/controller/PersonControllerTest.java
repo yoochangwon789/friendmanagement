@@ -71,7 +71,7 @@ class PersonControllerTest {
 
     @Test
     void modifyPerson() throws Exception {
-        PersonDto dto = PersonDto.of("james", "programming", "판교", LocalDate.now(),
+        PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(),
                 "programmer", "010-1111-2222");
 
         mockMvc.perform(
