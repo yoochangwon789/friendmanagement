@@ -86,8 +86,7 @@ class PersonControllerTest {
         mockMvc.perform(
                 MockMvcRequestBuilders.delete("/api/person/1"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("true"));
+                .andExpect(status().isOk());
 
         System.out.println(personRepository.findPeopleDeleted());
     }
