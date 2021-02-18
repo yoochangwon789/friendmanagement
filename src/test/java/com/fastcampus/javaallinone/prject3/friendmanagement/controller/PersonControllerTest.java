@@ -1,6 +1,7 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -28,6 +29,9 @@ class PersonControllerTest {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private MockMvc mockMvc;
 
@@ -66,8 +70,6 @@ class PersonControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "  \"name\": \"martin\",\n" +
-                        "  \"age\": 20,\n" +
-                        "  \"bloodType\": \"A\"\n" +
                         "}"))
                 .andDo(print())
                 .andExpect(status().isOk());
