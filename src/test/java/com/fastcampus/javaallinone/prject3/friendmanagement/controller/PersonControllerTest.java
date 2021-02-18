@@ -2,6 +2,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
+import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -80,6 +81,15 @@ class PersonControllerTest {
                 .content(toJsonString(dto)))
                 .andDo(print())
                 .andExpect(status().isOk());
+
+        Person result = personRepository.findById(1L).get();
+
+        assertThat(result.getName()).isEqualTo("martin");
+        assertThat(result.getHobby()).isEqualTo("programming");
+        assertThat(result.getAddress()).isEqualTo("판교");
+        assertThat(result.getBirthday()).isEqualTo(Birthday.of(LocalDate.now()));
+        assertThat(result.getJob()).isEqualTo("programmer");
+        assertThat(result.getPhoneNumber()).isEqualTo("010-1111-2222");
     }
 
     @Test
