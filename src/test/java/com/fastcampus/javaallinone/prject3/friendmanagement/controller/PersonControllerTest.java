@@ -1,6 +1,7 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
+import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -81,6 +82,14 @@ class PersonControllerTest {
 
     @Test
     void modifyName() throws Exception {
+        PersonDto dto = new PersonDto();
+        dto.setName("james");
+        dto.setBirthday(LocalDate.now());
+        dto.setAddress("판교");
+        dto.setHobby("programming");
+        dto.setJob("programmer");
+        dto.setPhoneNumber("010-1111-2222");
+
         mockMvc.perform(
                 MockMvcRequestBuilders.patch("/api/person/1")
                 .param("name", "martinModified"))
