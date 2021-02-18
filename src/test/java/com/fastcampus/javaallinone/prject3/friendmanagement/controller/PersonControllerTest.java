@@ -84,12 +84,15 @@ class PersonControllerTest {
 
         Person result = personRepository.findById(1L).get();
 
-        assertThat(result.getName()).isEqualTo("martin");
-        assertThat(result.getHobby()).isEqualTo("programming");
-        assertThat(result.getAddress()).isEqualTo("판교");
-        assertThat(result.getBirthday()).isEqualTo(Birthday.of(LocalDate.now()));
-        assertThat(result.getJob()).isEqualTo("programmer");
-        assertThat(result.getPhoneNumber()).isEqualTo("010-1111-2222");
+        // 모든 검증문을 한번에 확인 가능
+        assertAll(
+                () -> assertThat(result.getName()).isEqualTo("martin1"),
+                () -> assertThat(result.getHobby()).isEqualTo("programming1"),
+                () -> assertThat(result.getAddress()).isEqualTo("판교1"),
+                () -> assertThat(result.getBirthday()).isEqualTo(Birthday.of(LocalDate.now().plusDays(1))),
+                () -> assertThat(result.getJob()).isEqualTo("programmer1"),
+                () -> assertThat(result.getPhoneNumber()).isEqualTo("010-1111-22221")
+        );
     }
 
     @Test
