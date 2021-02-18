@@ -3,6 +3,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.configuration;
 import com.fastcampus.javaallinone.prject3.friendmanagement.configuration.serializer.BirthdaySerializer;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +29,8 @@ public class JsonConfig {
         // 내가 만든 Serializer 를 등록할 수 있다.
         objectMapper.registerModule(new BirthdayModule());
         objectMapper.registerModule(new JavaTimeModule());
+
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
         return objectMapper;
     }
