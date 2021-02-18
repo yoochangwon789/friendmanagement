@@ -64,8 +64,10 @@ class PersonControllerTest {
                 .andExpect(jsonPath("$.job").isEmpty())
                 .andExpect(jsonPath("$.phoneNumber").isEmpty())
                 .andExpect(jsonPath("$.deleted").value(false))
-                .andExpect(jsonPath("$.age").value(31))
-                .andExpect(jsonPath("$.birthdayToday").value(false));
+                // exists 것은 값이 존재하느냐의 여부를 묻는다, isNumber 으로 지정해서 숫자의 값을 가지고 있느냐의 여부를 묻게한다
+                .andExpect(jsonPath("$.age").isNumber())
+                // 생일 하루가 잠재적인 오류를 발생할 수 있으므로 boolean 의 값을 가지냐 정도의 TDD 작성
+                .andExpect(jsonPath("$.birthdayToday").isBoolean());
     }
 
     @Test
