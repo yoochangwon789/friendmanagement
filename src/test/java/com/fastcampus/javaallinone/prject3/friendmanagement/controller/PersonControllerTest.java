@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -76,9 +77,11 @@ class PersonControllerTest {
     void modifyName() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.patch("/api/person/1")
-                .param("name", "martin22`"))
+                .param("name", "martinModified"))
                 .andDo(print())
                 .andExpect(status().isOk());
+
+        assertThat(personRepository.findById(1L).get().getName()).isEqualTo("martinModified");
     }
 
     @Test
