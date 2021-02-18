@@ -1,6 +1,8 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
+import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -94,5 +96,10 @@ class PersonControllerTest {
                 .andExpect(status().isOk());
 
         assertTrue(personRepository.findPeopleDeleted().stream().anyMatch(person -> person.getId().equals(1L)));
+    }
+
+    // Json 타입의 바디를 굳이 귀찮게 입력하지 않고도 personDto 를 Json 형태로 시리얼 라이즈 해준다.
+    private String toJsonString(PersonDto personDto) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(personDto);
     }
 }
