@@ -82,13 +82,8 @@ class PersonControllerTest {
 
     @Test
     void modifyName() throws Exception {
-        PersonDto dto = new PersonDto();
-        dto.setName("james");
-        dto.setBirthday(LocalDate.now());
-        dto.setAddress("판교");
-        dto.setHobby("programming");
-        dto.setJob("programmer");
-        dto.setPhoneNumber("010-1111-2222");
+        PersonDto dto = PersonDto.of("james", "programming", "판교", LocalDate.now(),
+                "programmer", "010-1111-2222");
 
         mockMvc.perform(
                 MockMvcRequestBuilders.patch("/api/person/1")
