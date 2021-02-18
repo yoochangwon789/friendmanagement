@@ -70,21 +70,19 @@ class PersonControllerTest {
 
     @Test
     void modifyPerson() throws Exception {
+        PersonDto dto = PersonDto.of("james", "programming", "판교", LocalDate.now(),
+                "programmer", "010-1111-2222");
+
         mockMvc.perform(
                 MockMvcRequestBuilders.put("/api/person/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "  \"name\": \"martin\",\n" +
-                        "}"))
+                .content(toJsonString(dto)))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
     void modifyName() throws Exception {
-        PersonDto dto = PersonDto.of("james", "programming", "판교", LocalDate.now(),
-                "programmer", "010-1111-2222");
-
         mockMvc.perform(
                 MockMvcRequestBuilders.patch("/api/person/1")
                 .param("name", "martinModified"))
