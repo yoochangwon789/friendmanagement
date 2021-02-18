@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.util.NestedServletException;
 
 import java.time.LocalDate;
 
@@ -79,6 +80,20 @@ class PersonControllerTest {
                 .content(toJsonString(dto)))
                 .andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void modifyPersonIfNameDifferent() throws Exception {
+        PersonDto dto = PersonDto.of("james", "programming", "판교", LocalDate.now(),
+                "programmer", "010-1111-2222");
+
+        assertThrows(NestedServletException.class, () ->
+                mockMvc.perform(
+                MockMvcRequestBuilders.put("/api/person/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJsonString(dto)))
+                .andDo(print())
+                .andExpect(status().isOk()));
     }
 
     @Test
