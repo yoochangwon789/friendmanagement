@@ -88,6 +88,6 @@ class PersonControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        System.out.println(personRepository.findPeopleDeleted());
+        assertTrue(personRepository.findPeopleDeleted().stream().anyMatch(person -> person.getId().equals(1L)));
     }
 }
