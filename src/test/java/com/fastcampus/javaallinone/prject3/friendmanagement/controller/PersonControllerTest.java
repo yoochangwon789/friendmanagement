@@ -16,6 +16,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -96,6 +98,17 @@ class PersonControllerTest {
                 .andExpect(status().isOk());
 
         assertTrue(personRepository.findPeopleDeleted().stream().anyMatch(person -> person.getId().equals(1L)));
+    }
+
+    // Json 형태의 값으로 변하는지 테스트 코드 작업
+    @Test
+    void checkJsonString() throws JsonProcessingException {
+        PersonDto dto = new PersonDto();
+        dto.setName("martin");
+        dto.setBirthday(LocalDate.now());
+        dto.setAddress("판교");
+
+        System.out.println(">>>" + toJsonString(dto));
     }
 
     // Json 타입의 바디를 굳이 귀찮게 입력하지 않고도 personDto 를 Json 형태로 시리얼 라이즈 해준다.
