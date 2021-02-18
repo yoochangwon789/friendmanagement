@@ -53,7 +53,19 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.get("/api/person/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("martin"));
+                // $ 객체를 의미하고 . 을 통해서 각 어트리뷰트를 가져올 수 있다 객체 타입으로 선언된 것은 $ 을 사용
+                // 밑에 로직은 assertThat(result.getName()).isEqualTo("martin") 이랑 동일하고 밑에는 JsonPath 의 검증이라고 할 수 있다.
+                .andExpect(jsonPath("$.name").value("martin"))
+                .andExpect(jsonPath("$.hobby").isEmpty())
+                .andExpect(jsonPath("$.address").isEmpty())
+                .andExpect(jsonPath("$.birthday.yearOfBirthday").value(1991))
+                .andExpect(jsonPath("$.birthday.monthOfBirthday").value(8))
+                .andExpect(jsonPath("$.birthday.dayOfBirthday").value(15))
+                .andExpect(jsonPath("$.job").isEmpty())
+                .andExpect(jsonPath("$.phoneNumber").isEmpty())
+                .andExpect(jsonPath("$.deleted").value(false))
+                .andExpect(jsonPath("$.age").value(31))
+                .andExpect(jsonPath("$.birthdayToday").value(false));
     }
 
     @Test
