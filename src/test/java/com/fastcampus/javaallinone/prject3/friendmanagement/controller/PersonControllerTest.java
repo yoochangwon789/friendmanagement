@@ -74,14 +74,13 @@ class PersonControllerTest {
 
     @Test
     void postPerson() throws Exception {
+        PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(),
+                "programmer", "010-1111-2222");
+
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/api/person")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\n" +
-                                "  \"name\": \"martin2\",\n" +
-                                "  \"age\": 20,\n" +
-                                "  \"bloodType\": \"A\"\n" +
-                                "}"))
+                        .content(toJsonString(dto)))
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
