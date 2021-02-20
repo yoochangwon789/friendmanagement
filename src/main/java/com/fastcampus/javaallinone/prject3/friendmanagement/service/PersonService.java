@@ -34,6 +34,7 @@ public class PersonService {
     public void put(PersonDto personDto) {
         Person person= new Person();
         person.set(personDto);
+        person.setName(personDto.getName());
 
         personRepository.save(person);
     }
