@@ -45,12 +45,12 @@ class PersonRepositoryTest {
 
     @Test
     void findByMonthOfBirthday() {
-        List<Person> people = personRepository.findByMonthOfBirthday(8);
+        List<Person> people = personRepository.findByMonthOfBirthday(7);
         assertThat(people.size()).isEqualTo(2);
 
         assertAll(
-                () -> assertThat(people.get(0)).isEqualTo("martin"),
-                () -> assertThat(people.get(1)).isEqualTo("sophia")
+                () -> assertThat(people.get(0).getName()).isEqualTo("david"),
+                () -> assertThat(people.get(1).getName()).isEqualTo("tony")
         );
     }
 
