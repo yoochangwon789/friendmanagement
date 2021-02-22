@@ -10,6 +10,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+// spring contact loading 이 없다면 테스트 코드를 보다 더 효율적이고 빠르게 사용할 수 있다.
+// SpringBootTest 를 사용하지 않고 Mock 라이브러리 테스트로 구동 시킬 예정
+
 @SpringBootTest
 class PersonServiceTest {
 
