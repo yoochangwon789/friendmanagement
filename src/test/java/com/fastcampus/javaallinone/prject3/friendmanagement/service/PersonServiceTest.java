@@ -46,6 +46,11 @@ class PersonServiceTest {
         assertThat(result.get(0).getName()).isEqualTo("martin");
     }
 
+    /*
+    * 만약 SpringBootTest 로 돌렸으면 DB에 따로 지정된 객체를 만들어 거기에 맞는 테스트 코드를 맞춰야 하지만
+    * Mock 를 사용하면 가차 객체를 바로 테스트 코드에 구현하여 테스트 코드를 보다 더 효율적이게 사용할 수 있다
+    */
+
     @Test
     void getPerson() {
         when(personRepository.findById(1L))
