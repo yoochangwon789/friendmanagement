@@ -55,4 +55,14 @@ class PersonServiceTest {
 
         assertThat(person.getName()).isEqualTo("martin");
     }
+
+    @Test
+    void getPersonIfNotFound() {
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.empty());
+
+        Person person = personService.getPerson(1L);
+
+        assertThat(person).isNull();
+    }
 }
