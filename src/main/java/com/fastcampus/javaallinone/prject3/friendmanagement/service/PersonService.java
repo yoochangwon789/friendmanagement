@@ -23,9 +23,7 @@ public class PersonService {
 
     @Transactional(readOnly = true)
     public Person getPerson(Long id) {
-        Person person = personRepository.findById(id).orElse(null);
-
-        return person;
+        return personRepository.findById(id).orElse(null);
     }
 
     @Transactional
