@@ -1,5 +1,6 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.service;
 
+import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import org.assertj.core.util.Lists;
@@ -11,11 +12,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 // spring contact loading 이 없다면 테스트 코드를 보다 더 효율적이고 빠르게 사용할 수 있다.
 // SpringBootTest 를 사용하지 않고 Mock 라이브러리 테스트로 구동 시킬 예정.
@@ -69,5 +72,24 @@ class PersonServiceTest {
         Person person = personService.getPerson(1L);
 
         assertThat(person).isNull();
+    }
+
+    @Test
+    void put() {
+        PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(),
+                "programmer", "010-1111-2222");
+
+        /*
+        * Mock 의 대한 Test 코드를 지정해 주지 않아도 테스트 코드가 통가된다. 이유는 Mockito 리턴 값이 있거나 exception 이 발생하거나
+        * 그런 행위들의 역할이 없으면 굳이 지정을 하지 않아도 테스트 코드가 통과된다.
+        * */
+
+        personService.put(dto);
+
+        // void 타입의 메서드를 테스트 하기 위해서 Mockito 의 verify 라는 것을 사용한다.
+        // 우리가 지정하는 Mock 액션에 대해서 검증을 지원한다.
+        // personRepository 의 체크를 하고 save 메서드가 실행이 되었는지 그리고 파라미터 값이 지정한 값이냐 확인 하는 것.
+        // times -> 몇번 실행 되었는지 never -> 실행이 한번도 되지 않았는지 확인 하는 것
+        verify(personRepository, times(1)).save(any(Person.class));
     }
 }
