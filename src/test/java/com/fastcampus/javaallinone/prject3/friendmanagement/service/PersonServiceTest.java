@@ -94,6 +94,8 @@ class PersonServiceTest {
     void modifyIfPersonNotFound() {
         when(personRepository.findById(1L))
                 .thenReturn(Optional.empty());
+
+        personService.modify(1L, mockPersonDto());
     }
 
     @Test
