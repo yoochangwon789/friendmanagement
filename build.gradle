@@ -28,6 +28,7 @@ dependencies {
     implementation('org.glassfish:jakarta.el:3.0.3')
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation('org.mockito:mockito-junit-jupiter')
 }
 
 
