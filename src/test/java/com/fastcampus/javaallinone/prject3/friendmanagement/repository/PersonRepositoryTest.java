@@ -45,12 +45,20 @@ class PersonRepositoryTest {
 
     @Test
     void findByMonthOfBirthday() {
-        List<Person> people = personRepository.findByMonthOfBirthday(7);
+        List<Person> people = personRepository.findByMonthOfBirthday(8);
         assertThat(people.size()).isEqualTo(2);
 
         assertAll(
-                () -> assertThat(people.get(0)).isEqualTo("david"),
-                () -> assertThat(people.get(1)).isEqualTo("tony")
+                () -> assertThat(people.get(0)).isEqualTo("martin"),
+                () -> assertThat(people.get(1)).isEqualTo("sophia")
         );
+    }
+
+    @Test
+    void findPeopleDeleted() {
+        List<Person> people = personRepository.findPeopleDeleted();
+
+        assertThat(people.size()).isEqualTo(1);
+        assertThat(people.get(0).getName()).isEqualTo("andrew");
     }
 }
