@@ -92,4 +92,19 @@ class PersonServiceTest {
         // times -> 몇번 실행 되었는지 never -> 실행이 한번도 되지 않았는지 확인 하는 것
         verify(personRepository, times(1)).save(any(Person.class));
     }
+
+    @Test
+    void modifyIfPersonNotFound() {
+
+    }
+
+    @Test
+    void modifyIfNameIsDifferent() {
+
+    }
+
+    @Test
+    void modify() {
+
+    }
 }
