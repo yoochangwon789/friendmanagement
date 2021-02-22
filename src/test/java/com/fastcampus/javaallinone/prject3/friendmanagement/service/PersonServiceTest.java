@@ -35,6 +35,7 @@ class PersonServiceTest {
     // Mock 로 선언된 클래스는 빈 껍때기 이므로 Test 코드에서 직접 구현을 시켜줘야 한다
     @Test
     void getPeopleByName() {
+        // Mock 테스트는 실제로 구현된 객체를 사용하는 것이 아니라 단순히 메소드 시그니처 만을 동일한 가짜 객체를 이용해서 사용함
         when(personRepository.findByName("martin"))
                 .thenReturn(Lists.newArrayList(new Person("martin")));
 
@@ -42,12 +43,5 @@ class PersonServiceTest {
 
         assertThat(result.size()).isEqualTo(1);
         assertThat(result.get(0).getName()).isEqualTo("martin");
-    }
-
-    @Test
-    void getPerson() {
-        Person person = personService.getPerson(3L);
-
-        assertThat(person.getName()).isEqualTo("dennis");
     }
 }
