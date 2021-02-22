@@ -76,15 +76,12 @@ class PersonServiceTest {
 
     @Test
     void put() {
-        PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(),
-                "programmer", "010-1111-2222");
-
         /*
         * Mock 의 대한 Test 코드를 지정해 주지 않아도 테스트 코드가 통가된다. 이유는 Mockito 리턴 값이 있거나 exception 이 발생하거나
         * 그런 행위들의 역할이 없으면 굳이 지정을 하지 않아도 테스트 코드가 통과된다.
         * */
 
-        personService.put(dto);
+        personService.put(mockPersonDto());
 
         // void 타입의 메서드를 테스트 하기 위해서 Mockito 의 verify 라는 것을 사용한다.
         // 우리가 지정하는 Mock 액션에 대해서 검증을 지원한다.
@@ -95,7 +92,8 @@ class PersonServiceTest {
 
     @Test
     void modifyIfPersonNotFound() {
-
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.empty());
     }
 
     @Test
@@ -106,5 +104,10 @@ class PersonServiceTest {
     @Test
     void modify() {
 
+    }
+
+    private PersonDto mockPersonDto() {
+        return PersonDto.of("martin", "programming", "판교", LocalDate.now(),
+                "programmer", "010-1111-2222");
     }
 }
