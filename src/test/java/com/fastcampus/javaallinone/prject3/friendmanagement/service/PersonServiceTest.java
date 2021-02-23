@@ -109,7 +109,12 @@ class PersonServiceTest {
 
     @Test
     void modify() {
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.of(new Person("martin")));
 
+        personService.modify(1L, mockPersonDto());
+
+        verify(personRepository, times(1)).save(any(Person.class));
     }
 
     private PersonDto mockPersonDto() {
