@@ -65,4 +65,9 @@ public class PersonService {
 
         personRepository.save(person);
     }
+
+    // TODO : 구현 예정
+    // 중요 로직을 지웠을 경우 테스트 코드가 검증을 못하고 통과시키는 경우를 대비해 현업에서 쓰이는 테스트 코드 구현 추가
+//    private static class IsPersonWillBeUpdated implements ArgumentMatcher<Person> {
+//    }
 }
