@@ -101,7 +101,10 @@ class PersonServiceTest {
 
     @Test
     void modifyIfNameIsDifferent() {
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.of(new Person("tony")));
 
+        assertThrows(RuntimeException.class, () -> personService.modify(1L, mockPersonDto()));
     }
 
     @Test
