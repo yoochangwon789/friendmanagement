@@ -51,7 +51,8 @@ public class PersonService {
 
     @Transactional
     public void modify(Long id, String name) {
-        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("아이디가 존재하지 않습니다."));
+        // 람다식 으로 수정
+        Person person = personRepository.findById(id).orElseThrow(PersonNotFoundException::new);
 
         person.setName(name);
 
