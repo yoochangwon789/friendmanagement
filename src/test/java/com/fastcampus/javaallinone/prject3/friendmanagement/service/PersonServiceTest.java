@@ -136,6 +136,19 @@ class PersonServiceTest {
         personService.modify(1L, "daniel");
     }
 
+    @Test
+    void deleteIfPersonNotFound() {
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> personService.delete(1L));
+    }
+
+    @Test
+    void delete() {
+
+    }
+
     private PersonDto mockPersonDto() {
         return PersonDto.of("martin", "programming", "판교", LocalDate.now(),
                 "programmer", "010-1111-2222");
