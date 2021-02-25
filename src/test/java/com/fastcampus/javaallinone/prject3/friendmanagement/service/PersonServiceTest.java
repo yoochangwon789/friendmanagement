@@ -146,7 +146,10 @@ class PersonServiceTest {
 
     @Test
     void delete() {
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.of(new Person("martin")));
 
+        personService.delete(1L);
     }
 
     private PersonDto mockPersonDto() {
