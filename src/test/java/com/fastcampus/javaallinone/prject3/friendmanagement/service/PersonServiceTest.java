@@ -134,6 +134,8 @@ class PersonServiceTest {
                 .thenReturn(Optional.of(new Person("martin")));
 
         personService.modify(1L, "daniel");
+
+        verify(personRepository, times(1)).save(argThat(new IsNameWillBeUpdated()));
     }
 
     @Test
