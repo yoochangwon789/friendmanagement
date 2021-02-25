@@ -90,7 +90,8 @@ class PersonServiceTest {
         // 우리가 지정하는 Mock 액션에 대해서 검증을 지원한다.
         // personRepository 의 체크를 하고 save 메서드가 실행이 되었는지 그리고 파라미터 값이 지정한 값이냐 확인 하는 것.
         // times -> 몇번 실행 되었는지 never -> 실행이 한번도 되지 않았는지 확인 하는 것
-        verify(personRepository, times(1)).save(any(Person.class));
+//        verify(personRepository, times(1)).save(any(Person.class));
+        verify(personRepository, times(1)).save(argThat(new IsPersonWillBeInserted()));
     }
 
     @Test
@@ -162,7 +163,25 @@ class PersonServiceTest {
     }
 
     //중요 로직을 지웠을 경우 테스트 코드가 검증을 못하고 통과시키는 경우를 대비해 현업에서 쓰이는 테스트 코드 구현 추가
+    private static class IsPersonWillBeInserted implements ArgumentMatcher<Person> {
+
+        @Override
+        public boolean matches(Person person) {
+            return equals(person.getName(), "martin")
+                    && equals(person.getHobby(), "programming")
+                    && equals(person.getAddress(), "판교")
+                    && equals(person.getBirthday(), Birthday.of(LocalDate.now()))
+                    && equals(person.getJob(), "programmer")
+                    && equals(person.getPhoneNumber(), "010-1111-2222");
+        }
+
+        private boolean equals(Object actual, Object expected) {
+            return expected.equals(actual);
+        }
+    }
+
     private static class IsPersonWillBeUpdated implements ArgumentMatcher<Person> {
+
 
         @Override
          public boolean matches(Person person) {
@@ -174,24 +193,27 @@ class PersonServiceTest {
                      && equals(person.getPhoneNumber(), "010-1111-2222");
          }
 
-         private boolean equals(Object actual, Object expected) {
+        private boolean equals(Object actual, Object expected) {
             return expected.equals(actual);
          }
+
      }
 
-     private static class IsNameWillBeUpdated implements ArgumentMatcher<Person> {
+    private static class IsNameWillBeUpdated implements ArgumentMatcher<Person> {
 
          @Override
          public boolean matches(Person person) {
              return person.getName().equals("daniel");
          }
+
      }
 
-     private static class IsPersonWillBeDeleted implements ArgumentMatcher<Person> {
+    private static class IsPersonWillBeDeleted implements ArgumentMatcher<Person> {
 
          @Override
          public boolean matches(Person person) {
              return person.isDeleted();
          }
+
      }
 }
