@@ -120,6 +120,16 @@ class PersonServiceTest {
 //        verify(personRepository, times(1)).save(new argThat(new IsPersonWillBeUpdated()));
     }
 
+    @Test
+    void modifyByNameIfPersonNotFound() {
+
+    }
+
+    @Test
+    void modifyByName() {
+
+    }
+
     private PersonDto mockPersonDto() {
         return PersonDto.of("martin", "programming", "판교", LocalDate.now(),
                 "programmer", "010-1111-2222");
