@@ -152,6 +152,8 @@ class PersonServiceTest {
                 .thenReturn(Optional.of(new Person("martin")));
 
         personService.delete(1L);
+
+        verify(personRepository, times(1)).save(argThat(new IsPersonWillBeDeleted()));
     }
 
     private PersonDto mockPersonDto() {
@@ -182,6 +184,14 @@ class PersonServiceTest {
          @Override
          public boolean matches(Person person) {
              return person.getName().equals("daniel");
+         }
+     }
+
+     private static class IsPersonWillBeDeleted implements ArgumentMatcher<Person> {
+
+         @Override
+         public boolean matches(Person person) {
+             return person.isDeleted();
          }
      }
 }
