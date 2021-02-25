@@ -122,7 +122,10 @@ class PersonServiceTest {
 
     @Test
     void modifyByNameIfPersonNotFound() {
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.empty());
 
+        assertThrows(RuntimeException.class, () -> personService.modify(1L, "daniel"));
     }
 
     @Test
