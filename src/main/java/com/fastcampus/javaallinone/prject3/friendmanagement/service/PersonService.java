@@ -2,6 +2,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.service;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
+import com.fastcampus.javaallinone.prject3.friendmanagement.exception.PersonNotFoundException;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class PersonService {
 
     @Transactional
     public void modify(Long id, String name) {
-        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다."));
+        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("아이디가 존재하지 않습니다."));
 
         person.setName(name);
 
