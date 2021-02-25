@@ -2,10 +2,12 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.service;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
+import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -115,10 +117,26 @@ class PersonServiceTest {
         personService.modify(1L, mockPersonDto());
 
         verify(personRepository, times(1)).save(any(Person.class));
+//        verify(personRepository, times(1)).save(new argThat(new IsPersonWillBeUpdated()));
     }
 
     private PersonDto mockPersonDto() {
         return PersonDto.of("martin", "programming", "판교", LocalDate.now(),
                 "programmer", "010-1111-2222");
     }
+
+     // TODO : 구현 예정
+     //중요 로직을 지웠을 경우 테스트 코드가 검증을 못하고 통과시키는 경우를 대비해 현업에서 쓰이는 테스트 코드 구현 추가
+//    private static class IsPersonWillBeUpdated implements ArgumentMatcher<Person> {
+//
+//        @Override
+//         public boolean matches(Person person) {
+//             return person.getName().equals("martin")
+//                     && person.getHobby().equals("programming")
+//                     && person.getAddress().equals("판교")
+//                     && person.getBirthday().equals(Birthday.of(LocalDate.now()))
+//                     && person.getJob().equals("programmer")
+//                     && person.getPhoneNumber().equals("010-1111-2222");
+//         }
+//     }
 }
