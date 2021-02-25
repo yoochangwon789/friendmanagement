@@ -130,7 +130,10 @@ class PersonServiceTest {
 
     @Test
     void modifyByName() {
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.of(new Person("martin")));
 
+        personService.modify(1L, "daniel");
     }
 
     private PersonDto mockPersonDto() {
