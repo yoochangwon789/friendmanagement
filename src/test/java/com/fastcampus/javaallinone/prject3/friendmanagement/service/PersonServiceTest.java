@@ -174,4 +174,12 @@ class PersonServiceTest {
             return expected.equals(actual);
          }
      }
+
+     private static class IsNameWillBeUpdated implements ArgumentMatcher<Person> {
+
+         @Override
+         public boolean matches(Person person) {
+             return person.getName().equals("daniel");
+         }
+     }
 }

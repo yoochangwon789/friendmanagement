@@ -43,7 +43,7 @@ public class PersonService {
             throw new RuntimeException("이름이 다릅니다.");
         }
 
-//        person.set(personDto);
+        person.set(personDto);
 
         personRepository.save(person);
     }
