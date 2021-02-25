@@ -4,6 +4,7 @@ import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.Perso
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
 import com.fastcampus.javaallinone.prject3.friendmanagement.exception.PersonNotFoundException;
+import com.fastcampus.javaallinone.prject3.friendmanagement.exception.RenameNotPermittedException;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -108,7 +109,7 @@ class PersonServiceTest {
         when(personRepository.findById(1L))
                 .thenReturn(Optional.of(new Person("tony")));
 
-        assertThrows(RuntimeException.class, () -> personService.modify(1L, mockPersonDto()));
+        assertThrows(RenameNotPermittedException.class, () -> personService.modify(1L, mockPersonDto()));
     }
 
     @Test
