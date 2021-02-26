@@ -129,13 +129,12 @@ class PersonControllerTest {
         PersonDto dto = PersonDto.of("james", "programming", "판교", LocalDate.now(),
                 "programmer", "010-1111-2222");
 
-        assertThrows(NestedServletException.class, () ->
-                mockMvc.perform(
+        mockMvc.perform(
                 MockMvcRequestBuilders.put("/api/person/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(toJsonString(dto)))
                 .andDo(print())
-                .andExpect(status().isOk()));
+                .andExpect(status().isOk());
     }
 
     @Test

@@ -33,7 +33,11 @@ public class PersonController {
 
     @PutMapping("/{id}")
     public void modifyPerson(@PathVariable Long id, @RequestBody PersonDto personDto) {
-        personService.modify(id, personDto);
+        try {
+            personService.modify(id, personDto);
+        } catch (RuntimeException ex) {
+            log.error(ex.getMessage(), ex);
+        }
     }
 
     // Patch 일부 리소스만 업데이트 한다는 의미
