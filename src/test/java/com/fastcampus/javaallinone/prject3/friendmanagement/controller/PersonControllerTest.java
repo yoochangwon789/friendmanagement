@@ -101,6 +101,17 @@ class PersonControllerTest {
         );
     }
 
+    // PutMapping 에서 name 값은 필수 값이라 넣지 않으면 에러를 만드는 코드
+    @Test
+    void postPersonIfNameIsNull() throws Exception {
+        PersonDto dto = new PersonDto();
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(toJsonString(dto)));
+    }
+
     @Test
     void modifyPerson() throws Exception {
         PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(),

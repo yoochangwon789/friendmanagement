@@ -57,4 +57,9 @@ public class PersonController {
     public ResponseEntity<ErrorResponse> handlePersonNotFoundException(PersonNotFoundException ex) {
         return new ResponseEntity<>(ErrorResponse.of(HttpStatus.BAD_REQUEST.value(), ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
+
+    }
 }
