@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 class HelloWorldControllerTest {
@@ -31,13 +32,18 @@ class HelloWorldControllerTest {
 
     @Test
     void helloWorld() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController).build();
-
         // perform 을 통해 실제 http 동작을 실행
         mockMvc.perform(MockMvcRequestBuilders.get("/api/helloWorld"))
                 // 구체적인 test perform 의 결과를 도출 하기 위한 작업)
                 .andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("HelloWorld"));
+    }
+
+    @Test
+    void helloException() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/helloException"))
+                .andExpect(status().isInternalServerError());
     }
 }
