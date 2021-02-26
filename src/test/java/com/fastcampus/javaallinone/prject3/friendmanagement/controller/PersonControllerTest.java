@@ -139,6 +139,12 @@ class PersonControllerTest {
                 .andExpect(jsonPath("$.message").value("이름을 변경 허용하지 않습니다."));
     }
 
+    // 아이디가 없어서 Person 을 찾지 못하는 테스트 코드
+    @Test
+    void modifyPersonIfPersonNotFound() throws Exception {
+
+    }
+
     @Test
     void modifyName() throws Exception {
         mockMvc.perform(
