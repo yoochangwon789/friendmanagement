@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
@@ -20,13 +21,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class HelloWorldControllerTest {
 
     @Autowired
-    private HelloWorldController helloWorldController;
+    private WebApplicationContext wac;
 
     private MockMvc mockMvc;
 
     @BeforeEach
     void beforeEach() {
-        mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController)
+        mockMvc = MockMvcBuilders
+                .webAppContextSetup(wac)
                 .alwaysDo(print())
                 .build();
     }
