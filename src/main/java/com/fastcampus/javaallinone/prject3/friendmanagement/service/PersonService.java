@@ -3,7 +3,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.service;
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
 import com.fastcampus.javaallinone.prject3.friendmanagement.exception.PersonNotFoundException;
-import com.fastcampus.javaallinone.prject3.friendmanagement.exception.RenameNotPermittedException;
+import com.fastcampus.javaallinone.prject3.friendmanagement.exception.RenameIsNotPermittedException;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class PersonService {
         Person person = personRepository.findById(id).orElseThrow(PersonNotFoundException::new);
 
         if (!person.getName().equals(personDto.getName())) {
-            throw new RenameNotPermittedException();
+            throw new RenameIsNotPermittedException();
         }
 
         person.set(personDto);

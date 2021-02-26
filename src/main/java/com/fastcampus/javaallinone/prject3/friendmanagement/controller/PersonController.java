@@ -2,11 +2,13 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
+import com.fastcampus.javaallinone.prject3.friendmanagement.exception.RenameIsNotPermittedException;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import com.fastcampus.javaallinone.prject3.friendmanagement.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/api/person")
@@ -33,11 +35,7 @@ public class PersonController {
 
     @PutMapping("/{id}")
     public void modifyPerson(@PathVariable Long id, @RequestBody PersonDto personDto) {
-        try {
-            personService.modify(id, personDto);
-        } catch (RuntimeException ex) {
-            log.error(ex.getMessage(), ex);
-        }
+        personService.modify(id, personDto);
     }
 
     // Patch 일부 리소스만 업데이트 한다는 의미
@@ -49,5 +47,10 @@ public class PersonController {
     @DeleteMapping("/{id}")
     public void deletePerson(@PathVariable Long id) {
         personService.delete(id);
+    }
+
+    @ExceptionHandler(value = RenameIsNotPermittedException.class)
+    public ResponseEntity<String> handleRenameNoPermittedException(RenameIsNotPermittedException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
