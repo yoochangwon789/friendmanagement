@@ -2,6 +2,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
+import com.fastcampus.javaallinone.prject3.friendmanagement.exception.PersonNotFoundException;
 import com.fastcampus.javaallinone.prject3.friendmanagement.exception.RenameIsNotPermittedException;
 import com.fastcampus.javaallinone.prject3.friendmanagement.exception.dto.ErrorResponse;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
@@ -52,6 +53,11 @@ public class PersonController {
 
     @ExceptionHandler(value = RenameIsNotPermittedException.class)
     public ResponseEntity<ErrorResponse> handleRenameNoPermittedException(RenameIsNotPermittedException ex) {
+        return new ResponseEntity<>(ErrorResponse.of(HttpStatus.BAD_REQUEST.value(), ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = PersonNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePersonNotFoundException(PersonNotFoundException ex) {
         return new ResponseEntity<>(ErrorResponse.of(HttpStatus.BAD_REQUEST.value(), ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }
