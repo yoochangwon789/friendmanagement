@@ -1,5 +1,6 @@
 package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 class HelloWorldControllerTest {
@@ -19,22 +22,21 @@ class HelloWorldControllerTest {
 
     private MockMvc mockMvc;
 
-    @Test
-    void helloWorld() {
-//        System.out.println("test");
-        System.out.println(helloWorldController.helloWorld());
-
-        assertThat(helloWorldController.helloWorld()).isEqualTo("HelloWorld");
+    @BeforeEach
+    void beforeEach() {
+        mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController)
+                .alwaysDo(print())
+                .build();
     }
 
     @Test
-    void mockMvcTest() throws Exception {
+    void helloWorld() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController).build();
 
         // perform 을 통해 실제 http 동작을 실행
         mockMvc.perform(MockMvcRequestBuilders.get("/api/helloWorld"))
                 // 구체적인 test perform 의 결과를 도출 하기 위한 작업)
-                .andDo(MockMvcResultHandlers.print())
+                .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("HelloWorld"));
     }
