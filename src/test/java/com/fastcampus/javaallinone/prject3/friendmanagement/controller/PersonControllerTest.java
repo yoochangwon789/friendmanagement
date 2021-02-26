@@ -109,7 +109,9 @@ class PersonControllerTest {
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/api/person")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(toJsonString(dto)));
+                .content(toJsonString(dto)))
+            .andExpect(jsonPath("$.code").value(500))
+            .andExpect(jsonPath("$.message").value("알 수 없는 서버 오류가 발생하였습니다."));
     }
 
     @Test
