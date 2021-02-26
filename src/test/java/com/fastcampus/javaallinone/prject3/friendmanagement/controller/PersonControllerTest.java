@@ -49,14 +49,17 @@ class PersonControllerTest {
 
     @BeforeEach
     void beforeEach() {
-        mockMvc = MockMvcBuilders.standaloneSetup(personController).setMessageConverters(messageConverter).build();
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(personController)
+                .setMessageConverters(messageConverter)
+                .alwaysDo(print())
+                .build();
     }
 
     @Test
     void getPerson() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/person/1"))
-                .andDo(print())
                 .andExpect(status().isOk())
                 // $ 객체를 의미하고 . 을 통해서 각 어트리뷰트를 가져올 수 있다 객체 타입으로 선언된 것은 $ 을 사용
                 // 밑에 로직은 assertThat(result.getName()).isEqualTo("martin") 이랑 동일하고 밑에는 JsonPath 의 검증이라고 할 수 있다.
@@ -82,7 +85,6 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.post("/api/person")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(toJsonString(dto)))
-                .andDo(print())
                 .andExpect(status().isCreated());
 
         // sort 하여 오름차순으로 정리하고 0번째 값을 가져오겠다는 의미
@@ -108,7 +110,6 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.put("/api/person/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(toJsonString(dto)))
-                .andDo(print())
                 .andExpect(status().isOk());
 
         Person result = personRepository.findById(1L).get();
@@ -133,7 +134,6 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.put("/api/person/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(toJsonString(dto)))
-                .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.code").value(400))
                 .andExpect(jsonPath("$.message").value("이름을 변경 허용하지 않습니다."));
@@ -149,7 +149,6 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.put("/api/person/10")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(toJsonString(dto)))
-                .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.code").value(400))
                 .andExpect(jsonPath("$.message").value("Person Entity가 존재하지 않습니다."));
@@ -160,7 +159,6 @@ class PersonControllerTest {
         mockMvc.perform(
                 MockMvcRequestBuilders.patch("/api/person/1")
                 .param("name", "martinModified"))
-                .andDo(print())
                 .andExpect(status().isOk());
 
         assertThat(personRepository.findById(1L).get().getName()).isEqualTo("martinModified");
@@ -170,7 +168,6 @@ class PersonControllerTest {
     void deletePerson() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.delete("/api/person/1"))
-                .andDo(print())
                 .andExpect(status().isOk());
 
         assertTrue(personRepository.findPeopleDeleted().stream().anyMatch(person -> person.getId().equals(1L)));
