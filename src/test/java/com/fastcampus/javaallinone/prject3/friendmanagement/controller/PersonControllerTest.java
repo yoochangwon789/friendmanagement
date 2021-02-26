@@ -134,7 +134,9 @@ class PersonControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(toJsonString(dto)))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value(400))
+                .andExpect(jsonPath("$.message").value("이름을 변경 허용하지 않습니다."));
     }
 
     @Test
