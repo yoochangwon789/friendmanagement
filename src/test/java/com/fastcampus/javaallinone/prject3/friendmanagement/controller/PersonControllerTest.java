@@ -142,7 +142,17 @@ class PersonControllerTest {
     // 아이디가 없어서 Person 을 찾지 못하는 테스트 코드
     @Test
     void modifyPersonIfPersonNotFound() throws Exception {
+        PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(),
+                "programmer", "010-1111-2222");
 
+        mockMvc.perform(
+                MockMvcRequestBuilders.put("/api/person/10")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(toJsonString(dto)))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value(400))
+                .andExpect(jsonPath("$.message").value("Person Entity가 존재하지 않습니다."));
     }
 
     @Test
