@@ -3,6 +3,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
 import com.fastcampus.javaallinone.prject3.friendmanagement.exception.RenameIsNotPermittedException;
+import com.fastcampus.javaallinone.prject3.friendmanagement.exception.dto.ErrorResponse;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import com.fastcampus.javaallinone.prject3.friendmanagement.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ public class PersonController {
     }
 
     @ExceptionHandler(value = RenameIsNotPermittedException.class)
-    public ResponseEntity<String> handleRenameNoPermittedException(RenameIsNotPermittedException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorResponse> handleRenameNoPermittedException(RenameIsNotPermittedException ex) {
+        return new ResponseEntity<>(ErrorResponse.of(HttpStatus.BAD_REQUEST.value(), ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }
