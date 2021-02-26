@@ -60,6 +60,7 @@ public class PersonController {
 
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
-
+        return new ResponseEntity<>(ErrorResponse.of(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()),
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
