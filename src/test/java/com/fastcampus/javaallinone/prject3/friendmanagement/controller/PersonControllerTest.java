@@ -3,6 +3,7 @@ package com.fastcampus.javaallinone.prject3.friendmanagement.controller;
 import com.fastcampus.javaallinone.prject3.friendmanagement.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.Person;
 import com.fastcampus.javaallinone.prject3.friendmanagement.domain.dto.Birthday;
+import com.fastcampus.javaallinone.prject3.friendmanagement.exception.handler.GlobalExceptionHandler;
 import com.fastcampus.javaallinone.prject3.friendmanagement.repository.PersonRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,6 +46,9 @@ class PersonControllerTest {
     @Autowired
     private MappingJackson2HttpMessageConverter messageConverter;
 
+    @Autowired
+    private GlobalExceptionHandler globalExceptionHandler;
+
     private MockMvc mockMvc;
 
     @BeforeEach
@@ -52,6 +56,7 @@ class PersonControllerTest {
         mockMvc = MockMvcBuilders
                 .standaloneSetup(personController)
                 .setMessageConverters(messageConverter)
+                .setControllerAdvice(globalExceptionHandler)
                 .alwaysDo(print())
                 .build();
     }
