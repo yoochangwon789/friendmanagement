@@ -114,6 +114,20 @@ class PersonControllerTest {
     }
 
     @Test
+    void postPersonIfNameIsEmpty() throws Exception {
+        PersonDto dto = new PersonDto();
+        dto.setName("");
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(toJsonString(dto)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value(400))
+                .andExpect(jsonPath("$.message").value("이름은 필수값입니다."));
+    }
+
+    @Test
     void modifyPerson() throws Exception {
         PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(),
                 "programmer", "010-1111-2222");
