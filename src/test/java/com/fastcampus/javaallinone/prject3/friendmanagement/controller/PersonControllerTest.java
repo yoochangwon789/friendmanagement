@@ -24,6 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -221,6 +222,22 @@ class PersonControllerTest {
         dto.setAddress("판교");
 
         System.out.println(">>>" + toJsonString(dto));
+    }
+
+    @Test
+    void getAll() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/person"))
+                .andExpect(status().isOk())
+                // $ 만 표시하면 전체 탐색 hasSize 를 통해 리소스의 크기 확인
+                .andExpect(jsonPath("$").value(hasSize(6)))
+                // $ 는 객체를 표시하고 리스트[0] 첫번째의 name 을 가져오겠다는 의미
+                .andExpect(jsonPath("$.[0].name").value("martin"))
+                .andExpect(jsonPath("$.[1].name").value("david"))
+                .andExpect(jsonPath("$.[2].name").value("dennis"))
+                .andExpect(jsonPath("$.[3].name").value("sophia"))
+                .andExpect(jsonPath("$.[4].name").value("benny"))
+                .andExpect(jsonPath("$.[5].name").value("tony"));
     }
 
     // Json 타입의 바디를 굳이 귀찮게 입력하지 않고도 personDto 를 Json 형태로 시리얼 라이즈 해준다.
