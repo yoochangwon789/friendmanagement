@@ -68,4 +68,7 @@ public class PersonService {
 
         personRepository.save(person);
     }
+
+    public List<Person> getAll() {
+    }
 }

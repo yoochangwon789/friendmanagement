@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping(value = "/api/person")
 @RestController
@@ -22,6 +23,11 @@ public class PersonController {
 
     @Autowired
     private PersonService personService;
+
+    @GetMapping
+    public List<Person> getAll() {
+        return personService.getAll();
+    }
 
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable Long id) {
