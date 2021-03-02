@@ -226,25 +226,28 @@ class PersonControllerTest {
 
     @Test
     void getAll() throws Exception {
+        // param 을 통해 페이지 값을 지정해 준다 page, size 을 넣은 이유는 우리가 다루는 데이터가 6개 인데 2개씩 1 페이지로 정해 총 3페이지가 출력
+        // page 1 : martin, david  page 2 : dennis, sophia  page 3 : benny, tony
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/person"))
+                MockMvcRequestBuilders.get("/api/person")
+                    .param("page", "1")
+                    .param("size", "2"))
                 .andExpect(status().isOk())
 
-                // $ 만 표시하면 전체 탐색 hasSize 를 통해 리소스의 크기 확인
+                // $ 객체의 전체 탐색 hasSize 를 통해 리소스의 크기 확인
 //                .andExpect(jsonPath("$").value(hasSize(6)))
 
-                // page 를 가져오기 위한 totalPages 를 사용한다 우리는 디폴트 값을 사용했기 때문에 1로 통일
-                .andExpect(jsonPath("$.totalPages").value(1))
+                // page 를 가져오기 위한 totalPages 를 사용한다 위에 param 을 통해 3개의 page 를 출력하니까 밑에도 value 값을 3 으로 지정
+                .andExpect(jsonPath("$.totalPages").value(3))
                 // page 의 size 를 가져 오려면 totalElements 를 사용
                 .andExpect(jsonPath("$.totalElements").value(6))
+                // 한 페이지의 2개씩 출력하는 것을 확인하기 위해 numberOfElements 을 사용해 value 를 2로 지정
+                .andExpect(jsonPath("$.numberOfElements").value(2))
+
                 // $ 는 객체를 표시하고 리스트[0] 첫번째의 name 을 가져오겠다는 의미
                 // content 를 사용하는 이유는 pageable 의 값을 가져오려면 content 을 사용해야함
-                .andExpect(jsonPath("$.content.[0].name").value("martin"))
-                .andExpect(jsonPath("$.content.[1].name").value("david"))
-                .andExpect(jsonPath("$.content.[2].name").value("dennis"))
-                .andExpect(jsonPath("$.content.[3].name").value("sophia"))
-                .andExpect(jsonPath("$.content.[4].name").value("benny"))
-                .andExpect(jsonPath("$.content.[5].name").value("tony"));
+                .andExpect(jsonPath("$.content.[0].name").value("dennis"))
+                .andExpect(jsonPath("$.content.[1].name").value("sophia"));
     }
 
     // Json 타입의 바디를 굳이 귀찮게 입력하지 않고도 personDto 를 Json 형태로 시리얼 라이즈 해준다.
