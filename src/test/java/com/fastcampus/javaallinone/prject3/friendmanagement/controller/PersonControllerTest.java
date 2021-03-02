@@ -108,8 +108,9 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.post("/api/person")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(toJsonString(dto)))
-            .andExpect(jsonPath("$.code").value(500))
-            .andExpect(jsonPath("$.message").value("알 수 없는 서버 오류가 발생하였습니다."));
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.code").value(400))
+            .andExpect(jsonPath("$.message").value("이름은 필수값입니다."));
     }
 
     @Test
