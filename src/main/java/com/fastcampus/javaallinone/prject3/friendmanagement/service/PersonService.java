@@ -19,6 +19,10 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
+    public List<Person> getAll() {
+        return personRepository.findAll();
+    }
+
     public List<Person> getPeopleByName(String name) {
         return personRepository.findByName(name);
     }
@@ -67,8 +71,5 @@ public class PersonService {
         person.setDeleted(true);
 
         personRepository.save(person);
-    }
-
-    public List<Person> getAll() {
     }
 }
