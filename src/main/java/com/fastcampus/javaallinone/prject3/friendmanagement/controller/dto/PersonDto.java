@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class PersonDto {
 
-    @NotEmpty
+    @NotEmpty(message = "이름은 필수값입니다.")
     private String name;
 
     private String hobby;
