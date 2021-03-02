@@ -21,6 +21,7 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
+    // pageable 을 넣어주면 page 처리가 자동으로 된다.
     public Page<Person> getAll(Pageable pageable) {
         return personRepository.findAll(pageable);
     }

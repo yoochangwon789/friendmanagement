@@ -13,6 +13,10 @@ import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -164,15 +168,16 @@ class PersonServiceTest {
 
     @Test
     void getAll() {
-        when(personRepository.findAll())
-                .thenReturn(Lists.newArrayList(new Person("martin"), new Person("dennis"), new Person("tony")));
+        when(personRepository.findAll(any(Pageable.class)))
+                .thenReturn(new PageImpl<>(Lists.newArrayList(new Person("martin"), new Person("dennis"),
+                        new Person("tony"))));
 
-        List<Person> result = personService.getAll();
+        Page<Person> result = personService.getAll(PageRequest.of(0, 3));
 
-        assertThat(result.size()).isEqualTo(3);
-        assertThat(result.get(0).getName()).isEqualTo("martin");
-        assertThat(result.get(1).getName()).isEqualTo("dennis");
-        assertThat(result.get(2).getName()).isEqualTo("tony");
+        assertThat(result.getNumberOfElements()).isEqualTo(3);
+        assertThat(result.getContent().get(0).getName()).isEqualTo("martin");
+        assertThat(result.getContent().get(1).getName()).isEqualTo("dennis");
+        assertThat(result.getContent().get(2).getName()).isEqualTo("tony");
     }
 
     //중요 로직을 지웠을 경우 테스트 코드가 검증을 못하고 통과시키는 경우를 대비해 현업에서 쓰이는 테스트 코드 구현 추가
