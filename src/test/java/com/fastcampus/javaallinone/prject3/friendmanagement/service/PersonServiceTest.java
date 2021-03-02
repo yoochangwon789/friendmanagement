@@ -162,6 +162,19 @@ class PersonServiceTest {
                 "programmer", "010-1111-2222");
     }
 
+    @Test
+    void getAll() {
+        when(personRepository.findAll())
+                .thenReturn(Lists.newArrayList(new Person("martin"), new Person("dennis"), new Person("tony")));
+
+        List<Person> result = personService.getAll();
+
+        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.get(0).getName()).isEqualTo("martin");
+        assertThat(result.get(1).getName()).isEqualTo("dennis");
+        assertThat(result.get(2).getName()).isEqualTo("tony");
+    }
+
     //중요 로직을 지웠을 경우 테스트 코드가 검증을 못하고 통과시키는 경우를 대비해 현업에서 쓰이는 테스트 코드 구현 추가
     private static class IsPersonWillBeInserted implements ArgumentMatcher<Person> {
 
